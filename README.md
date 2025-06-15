@@ -1,4 +1,4 @@
-# 🌸 Ky-Suigetsu - Qtile Configuration
+# <img src="images/aizen.png" alt="Aizen" width="85" style="vertical-align: middle;"> Ky-Suigetsu - Qtile Configuration
 
 *"Just as Kyōka Suigetsu creates perfect illusions, this config is the perfect desktop environment for multitasking with fun"*
 
