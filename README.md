@@ -4,16 +4,16 @@
 
 A Qtile setup that delivers Hyprland-smooth performance with rock-solid X11 stability. Born from the quest to find a window manager that combines Hyprland's fluidity with GNOME's feature completeness, without the breakage.
 
-![Screenshot](images/full.png) <!-- Add your screenshot here -->
+![Screenshot](images/full1.png) <!-- Add your screenshot here -->
 
 <table>
   <tr>
-    <td><img src="images/full.png" alt="Desktop Overview" width="480"/></td>
+    <td><img src="images/full1.png" alt="Desktop Overview" width="480"/></td>
     <td><img src="images/term.png" alt="Rofi Launcher" width="480"/></td>
   </tr>
   <tr>
     <td><img src="images/firefox.png" alt="Workspace Layout" width="480"/></td>
-    <td><img src="images/float.png" alt="Status Bar" width="480"/></td>
+    <td><img src="images/float2.png" alt="Status Bar" width="480"/></td>
   </tr>
 </table>
 
