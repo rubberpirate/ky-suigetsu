@@ -154,7 +154,7 @@ yay -S qtile-extras
 yay -S kitty rofi firefox thunar picom brightnessctl playerctl flameshot fastfetch sddm
 ```
 
-### Installation Steps
+### Auto-Installation Steps
 
 1. **Clone the repository:**
    ```bash
