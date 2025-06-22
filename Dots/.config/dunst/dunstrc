@@ -1,0 +1,93 @@
+[global]
+    ### Display ###
+    monitor = 0
+    follow = mouse
+    
+    # Updated geometry syntax
+    width = 300
+    height = 300
+    origin = top-right
+    offset = 12x46
+    
+    # Notification settings
+    indicate_hidden = yes
+    shrink = yes
+    transparency = 0
+    separator_height = 2
+    padding = 8
+    horizontal_padding = 8
+    frame_width = 2
+    frame_color = "#000000"
+    separator_color = frame
+    sort = yes
+    idle_threshold = 120
+
+    ### Text ###
+    font = JetBrainsMono Nerd Font 10
+    line_height = 0
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    show_age_threshold = 60
+    word_wrap = yes
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+
+    ### Icons ###
+    icon_position = left
+    max_icon_size = 64
+    min_icon_size = 16
+    icon_theme = candy-icons,Adwaita,hicolor
+    enable_recursive_icon_lookup = true
+    icon_path = /usr/share/icons/candy-icons/apps/scalable:/usr/share/icons/candy-icons/devices/scalable:/usr/share/icons/Adwaita/16x16:/usr/share/icons/Adwaita/32x32:/usr/share/icons/Adwaita/48x48:/usr/share/icons/hicolor/16x16:/usr/share/icons/hicolor/32x32:/usr/share/icons/hicolor/48x48:/usr/share/icons/hicolor/scalable
+
+    ### History ###
+    sticky_history = yes
+    history_length = 20
+
+    ### Misc/Advanced ###
+    dmenu = /usr/bin/dmenu -p dunst:
+    browser = /usr/bin/firefox -new-tab
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    corner_radius = 8
+    force_xinerama = false
+
+    ### Mouse ###
+    mouse_left_click = close_current
+    mouse_middle_click = do_action
+    mouse_right_click = close_all
+    
+    ### Shortcuts (moved from deprecated section) ###
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+grave
+
+[experimental]
+    per_monitor_dpi = false
+
+[urgency_low]
+    foreground = "#D9E0EE"
+    background = "#1E1E2E"
+    frame_color = "#363a4f"
+    timeout = 10
+    # Removed custom icon path - will use system icons
+
+[urgency_normal]
+    background = "#1E1E2E"
+    foreground = "#D9E0EE"
+    frame_color = "#363a4f"
+    timeout = 10
+    # Removed custom icon path - will use system icons
+
+[urgency_critical]
+    background = "#1E1E2E"
+    foreground = "#D9E0EE"
+    frame_color = "#F28FAD"
+    timeout = 0
+    # Removed custom icon path - will use system icons
