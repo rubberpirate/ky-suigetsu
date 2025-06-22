@@ -162,32 +162,12 @@ yay -S kitty rofi firefox thunar picom brightnessctl playerctl flameshot fastfet
    cd ky-suigetsu
    ```
 
-2. **Backup existing configuration:**
+2. **Running the script:**
    ```bash
-   mv ~/.config/qtile ~/.config/qtile.backup
+   chmod +x ky.sh
+   ./ky.sh
    ```
 
-3. **Install the configuration:**
-   ```bash
-   cp -r .config/qtile ~/.config/
-   ```
-
-4. **Make scripts executable:**
-   ```bash
-   chmod +x ~/.config/qtile/scripts/*
-   chmod +x ~/.config/qtile/autostart_once.sh
-   ```
-
-5. **Install fonts:**
-   ```bash
-   # Install JetBrainsMono Nerd Font and Font Awesome
-   yay -S ttf-jetbrains-mono-nerd ttf-font-awesome
-   ```
-
-6. **Restart Qtile:**
-   ```bash
-   # Log out and log back in, or restart Qtile with Super + Shift + r
-   ```
 
 ## 🎨 Customization
 
