@@ -4,7 +4,7 @@
 
 A Qtile setup that delivers Hyprland-smooth performance with rock-solid X11 stability. Born from the quest to find a window manager that combines Hyprland's fluidity with GNOME's feature completeness, without the breakage.
 
-![Screenshot](images/full1.png) <!-- Add your screenshot here -->
+https://github.com/user-attachments/assets/b0f48427-d5a2-43e0-bac8-b0ca96f36eb0
 
 <table>
   <tr>
