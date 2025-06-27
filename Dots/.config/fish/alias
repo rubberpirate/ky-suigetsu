@@ -1,0 +1,44 @@
+# ls aliases
+# alias ls='lsd -F --sort=extension --color=auto'
+alias ls='exa --icons'
+alias ll='exa -lh --icons'
+alias lsl='lsd -alF'
+alias la='exa -ah --icons'
+alias lsa='exa -lah --icons'
+alias l='exa --icons'
+
+# To avoid mistakes
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Git commands (to be revised)
+alias gpo='git push origin master'
+alias gp='git pull'
+alias gs='git status'
+alias gd='git diff'
+alias gda='git ls-files . --exclude-standard --others'
+alias gr='git reflog'
+alias glf='git ls-files'
+alias gc='git clone'
+alias gl='git log'
+alias glog='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n""%C(white)%s%C(reset) %C(dim white)- %an%C(reset)" --all'
+
+# QoL stuff
+alias c='clear'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias sl='sl -e'
+alias fucking='sudo'
+alias colortest='npx colortest'
+alias clnf='clear && neofetch'
+alias y='echo Hey $USERNAME, you can stop spamming Y'
+alias diskspace='du -S | sort -n -r |more'
+alias topdf='libreoffice --headless --invisible --convert-to pdf'
+alias toilet='toilet -f mono12 -F metal'
+alias pacman='sudo pacman'
+alias shistory='history | grep'
+
+# Quickly load bashrc
+alias gogo='source ~/.bashrc'

@@ -1,0 +1,12 @@
+-- This file was automatically created by the NvChad system package
+-- to ensure NvChad starts correctly without errors.
+--
+-- You can add your custom lazy.nvim plugin specifications here.
+-- For example:
+-- return {
+--   { "nvim-lua/plenary.nvim" },
+--   -- add more plugins here
+-- }
+--
+-- If you have no custom plugins yet, NvChad requires this file to return an empty table.
+return {}
