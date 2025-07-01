@@ -68,8 +68,8 @@ workspace_names = [
 
 
 # General
-wallpaper_main = "~/Wallpaper/a3.png"
-wallpaper_sec = "~/Wallpaper/a3.png"
+wallpaper_main = "/home/rubberpirate/Wallpaper/wall2.png"
+wallpaper_sec = "/home/rubberpirate/Wallpaper/wall2.png"
 
 # Hardware
 network = "wlan0"  # network interface name

@@ -2,8 +2,8 @@
   "bar": "decorated",
   "colorscheme": "catppuccin",
   "terminal": "kitty",
-  "wallpaper_main": "~/Wallpaper/a3.png",
-  "wallpaper_sec": "~/Wallpaper/a3.png",
+  "wallpaper_main": "/home/rubberpirate/Wallpaper/wall2.png",
+  "wallpaper_sec": "/home/rubberpirate/Wallpaper/wall2.png",
   "with_battery": true,
   "with_wlan": true,
   "two_monitors": false

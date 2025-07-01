@@ -26,6 +26,7 @@ def create_bar(extra_bar=False):
             separator(),
             *gen_current_layout(),
             *w_battery,
+            *w_graphics,
             w_volume_icon,
             separator_sm(),
             w_volume,

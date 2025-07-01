@@ -6,11 +6,12 @@ from qtile_extras.widget.decorations import RectDecoration
 
 
 from utils.settings import workspace_names
-from utils import color, config
+from utils import color, config, dir
 
 import os
 
 home = os.path.expanduser('~')
+qtile_dir = dir.get()
 
 group_box_settings = {
     'active': color['fg'],
@@ -45,7 +46,27 @@ def open_powermenu():
 
 
 def open_calendar():
-    qtile.cmd_spawn('' + home + '/.local/bin/toggle_cal')
+    qtile.cmd_spawn(f'{qtile_dir}/scripts/wallpaper_changer.sh')
+
+
+def open_graphics_menu():
+    qtile.cmd_spawn(f'{qtile_dir}/scripts/graphics_switch.sh menu')
+
+
+def open_network_menu():
+    qtile.cmd_spawn(f'{qtile_dir}/scripts/network_manager.sh menu')
+
+
+def open_network_simple_menu():
+    qtile.cmd_spawn(f'{qtile_dir}/scripts/network_manager.sh simple-menu')
+
+
+def open_wallpaper_menu():
+    qtile.cmd_spawn(f'{qtile_dir}/scripts/wallpaper_changer.sh')
+
+
+def open_wallpaper_random():
+    qtile.cmd_spawn(f'{qtile_dir}/scripts/wallpaper_changer.sh --random')
 
 
 def parse_window_name(text):
@@ -250,6 +271,7 @@ w_battery = (
             foreground=color['dark'],
             fontsize=18,
             padding=8,
+            update_interval=3,
             decorations=_left_decor(color['yellow']),
         ),
         separator_sm(),
@@ -258,6 +280,7 @@ w_battery = (
             show_short_text=False,
             foreground=color['yellow'],
             padding=8,
+            update_interval=3,
             decorations=_right_decor(),
         ),
         separator(),
@@ -284,35 +307,32 @@ w_volume = widget.PulseVolume(
     decorations=_right_decor(),
 )
 
-# internet
+# internet - Enhanced network widget
 w_wlan = (
     (
-        widget.Wlan(
-            format='󰖩 ',
+        widget.GenPollText(
+            func=lambda: os.popen(f'{qtile_dir}/scripts/network_manager.sh icon').read().strip(),
+            update_interval=3,
             foreground=color['dark'],
-            disconnected_message='󰖪',
-            fontsize=16,
-            interface='wlan0',
-            update_interval=5,
-            mouse_callbacks={
-                'Button1': lambda: qtile.cmd_spawn('' + home + '/.local/bin/nmgui'),
-                # 'Button3': lambda: qtile.cmd_spawn(myTerm + ' -e nmtui'),
-            },
-            padding=4,
+            fontsize=18,
+            padding=8,
             decorations=_left_decor(color['maroon']),
+            mouse_callbacks={
+                'Button1': open_network_simple_menu,
+                'Button3': open_network_menu,
+            },
         ),
         separator_sm(),
-        widget.Wlan(
-            format='{percent:2.0%}',
-            disconnected_message=' ',
-            interface='wlan0',
-            update_interval=5,
-            mouse_callbacks={
-                'Button1': lambda: qtile.cmd_spawn('' + home + '/.local/bin/nmgui'),
-                # 'Button3': lambda: qtile.cmd_spawn(myTerm + ' -e nmtui'),
-            },
+        widget.GenPollText(
+            func=lambda: os.popen(f'{qtile_dir}/scripts/network_manager.sh info').read().strip(),
+            update_interval=3,
+            foreground=color['maroon'],
             padding=8,
             decorations=_right_decor(),
+            mouse_callbacks={
+                'Button1': open_network_simple_menu,
+                'Button3': open_network_menu,
+            },
         ),
         separator(),
     )
@@ -405,8 +425,8 @@ def w_updates():
 # w_box = widget.WidgetBox(
 #     close_button_location='right',
 #     fontsize=24,
-#     text_closed='',
-#     text_open='',
+#     text_closed='',
+#     text_open='',
 #     widgets=[
 #         widget.CPU(
 #
@@ -423,3 +443,84 @@ def w_updates():
 #         # TODO uptime, CPU, temp, diskfree, memory
 #     ],
 # )
+
+# graphics switching
+def gen_graphics_widget():
+    w_color = color['magenta']
+    
+    return (
+        widget.GenPollText(
+            func=lambda: os.popen(f'{qtile_dir}/scripts/graphics_switch.sh icon').read().strip(),
+            update_interval=30,
+            foreground=color['dark'],
+            fontsize=18,
+            padding=8,
+            decorations=_left_decor(w_color),
+            mouse_callbacks={'Button1': open_graphics_menu},
+        ),
+        separator_sm(),
+        widget.GenPollText(
+            func=lambda: os.popen(f'{qtile_dir}/scripts/graphics_switch.sh current').read().strip().upper(),
+            update_interval=30,
+            foreground=w_color,
+            padding=8,
+            decorations=_right_decor(),
+            mouse_callbacks={'Button1': open_graphics_menu},
+        ),
+        separator(),
+    )
+
+w_graphics = gen_graphics_widget()
+
+# enhanced network widget
+def gen_network_widget():
+    w_color = color['blue']
+    
+    return (
+        widget.GenPollText(
+            func=lambda: os.popen(f'{qtile_dir}/scripts/network_manager.sh icon').read().strip(),
+            update_interval=5,
+            foreground=color['dark'],
+            fontsize=18,
+            padding=8,
+            decorations=_left_decor(w_color),
+            mouse_callbacks={'Button1': open_network_menu, 'Button3': open_network_simple_menu},
+        ),
+        separator_sm(),
+        widget.GenPollText(
+            func=lambda: os.popen(f'{qtile_dir}/scripts/network_manager.sh info').read().strip(),
+            update_interval=10,
+            foreground=w_color,
+            padding=8,
+            decorations=_right_decor(),
+            mouse_callbacks={'Button1': open_network_menu, 'Button3': open_network_simple_menu},
+        ),
+        separator(),
+    )
+
+w_network = gen_network_widget()
+
+# wallpaper widget
+def gen_wallpaper_widget():
+    return (
+        widget.GenPollText(
+            func=lambda: "🖼️",
+            update_interval=60,
+            fontsize=16,
+            mouse_callbacks={
+                'Button1': open_wallpaper_menu,
+                'Button3': open_wallpaper_random
+            },
+            decorations=[
+                RectDecoration(
+                    colour=color['gray'],
+                    radius=2,
+                    filled=True,
+                    padding_y=2
+                )
+            ],
+        ),
+        separator(),
+    )
+
+w_wallpaper = gen_wallpaper_widget()

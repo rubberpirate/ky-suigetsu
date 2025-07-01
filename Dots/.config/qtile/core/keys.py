@@ -92,6 +92,7 @@ keys = [
     Key([mod], "d", lazy.spawn("rofi -show drun -theme ~/.config/rofi/launcher.rasi"), desc="Launch Rofi (run)"),
     Key([mod, shift], "e", lazy.spawn("" + home + "/.local/bin/power"), desc="Power Menu"),
     Key([mod, shift], "n", lazy.spawn("" + home + "/.local/bin/nmgui"), desc="Network Menu"),
+    Key([mod, shift], "w", lazy.spawn("" + home + "/.local/bin/wallpaper"), desc="Wallpaper Menu"),
     # focus, move windows and screens
     Key([mod], "Down", lazy.layout.down(), desc="Move focus down in current stack pane"),
     Key([mod], "Up", lazy.layout.up(), desc="Move focus up in current stack pane"),
