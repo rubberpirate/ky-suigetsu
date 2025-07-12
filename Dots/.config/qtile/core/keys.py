@@ -2,6 +2,7 @@ from libqtile.config import Key, KeyChord
 from libqtile.lazy import lazy
 
 import os
+import sys
 
 mod = "mod4"
 control = "control"
@@ -9,6 +10,31 @@ shift = "shift"
 alt = "mod1"
 terminal = "kitty"
 home = os.path.expanduser('~')
+
+# Bar switching functions
+@lazy.function
+def switch_to_ex1_bar(qtile):
+    """Switch to ex1 bar configuration"""
+    try:
+        qtile.cmd_spawn("bash -c 'echo \"ex1\" > ~/.config/qtile/current_bar && qtile cmd-obj -o cmd -f restart'")
+    except Exception as e:
+        qtile.cmd_spawn(f'notify-send "Error" "Failed to switch to EX1: {str(e)}"')
+
+@lazy.function 
+def switch_to_ex2_bar(qtile):
+    """Switch to ex2 bar configuration"""
+    try:
+        qtile.cmd_spawn("bash -c 'echo \"ex2\" > ~/.config/qtile/current_bar && qtile cmd-obj -o cmd -f restart'")
+    except Exception as e:
+        qtile.cmd_spawn(f'notify-send "Error" "Failed to switch to EX2: {str(e)}"')
+
+@lazy.function
+def switch_to_default_bar(qtile):
+    """Switch back to default bar configuration"""
+    try:
+        qtile.cmd_spawn("bash -c 'echo \"default\" > ~/.config/qtile/current_bar && qtile cmd-obj -o cmd -f restart'")
+    except Exception as e:
+        qtile.cmd_spawn(f'notify-send "Error" "Failed to switch to default: {str(e)}"')
 
 # resize functions
 def resize(qtile, direction):
@@ -125,9 +151,10 @@ keys = [
     Key([mod], "e", lazy.spawn("thunar"), desc="Launch Thunar"),
     Key([mod], "c", lazy.spawn("code"), desc="Launch VSCode"),
     Key([mod], "n", lazy.spawn("notion-app-enhanced"), desc="Launch Notion"),
-    Key([mod], "s", lazy.spawn("spotify"), desc="Launch Spotify"),
-    Key([mod], "t", lazy.group["scratchpad"].dropdown_toggle("term")),
-    Key([mod, shift], "t", lazy.group["scratchpad"].dropdown_toggle("btop-term")),
+    # bar switching
+    Key([mod, control], "1", switch_to_default_bar, desc="Switch to default bar"),
+    Key([mod, control], "2", switch_to_ex1_bar, desc="Switch to EX1 bar style"),
+    Key([mod, control], "3", switch_to_ex2_bar, desc="Switch to EX2 bar style"),
     # screenshots
     Key([], "Print", lazy.spawn("flameshot gui"), desc="Print Screen"),
     Key([mod], "Print", lazy.spawn("flameshot screen"), desc="Print region of screen"),
@@ -158,7 +185,8 @@ keys = [
 ]
 
 def show_keys():
-    key_help = ""
+    key_help = "QTILE KEYBOARD SHORTCUTS\n"
+    key_help += "=" * 50 + "\n\n"
     for i in range(0, len(keys)):
         k = keys[i]
         if not isinstance(k, Key):
@@ -176,7 +204,7 @@ def show_keys():
         else:
             mods += k.key
 
-        key_help += "{:<25} {}".format(mods, k.desc + ("\n" if i != len(keys) - 1 else ""))
+        key_help += "{:<30} {}".format(mods, k.desc + ("\n" if i != len(keys) - 1 else ""))
 
     return key_help
 

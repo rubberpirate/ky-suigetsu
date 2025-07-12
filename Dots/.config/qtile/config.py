@@ -21,4 +21,3 @@ focus_on_window_activation = 'smart'
 # reconfigure_screens = True
 wmname = "qtile"
 
-
